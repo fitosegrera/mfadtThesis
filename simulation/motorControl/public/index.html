@@ -1,0 +1,129 @@
+<html>
+
+<head>
+    <style type="text/css">
+    body {
+        font-family: "Lucida Console", Monaco, monospace;
+        font-size: 16px;
+        background-color: #111;
+        color: #999;
+        text-align: center;
+    }
+    
+    p {
+        font-size: 13px;
+        margin-top: -50px;
+        text-align: center;
+    }
+    
+    #selMot {
+        width: 150px;
+        height: 40px;
+        border-left: 1px solid #222;
+        border-top: 1px solid #222;
+        border-right: 2px solid #666;
+        border-bottom: 2px solid #666;
+        background: #111;
+        color: #999;
+        font-size: 13px;
+    }
+    
+    input {
+        width: 100px;
+        height: 40px;
+        border-left: 1px solid #222;
+        border-top: 1px solid #222;
+        border-right: 2px solid #666;
+        border-bottom: 2px solid #666;
+        background: #111;
+        color: #999;
+        font-size: 13px;
+    }
+    
+    #time {
+        width: 75px;
+        border-left: 1px solid #222;
+        border-top: 1px solid #222;
+        border-right: 2px solid #666;
+        border-bottom: 2px solid #666;
+    }
+
+    div {
+        width: 720px;
+        margin: auto;
+        margin-top:50px;
+    }
+    #output{
+        margin-top: 20px;
+        width: 560px;
+        background-color: #111;
+        color: #999;
+        border-left: 1px solid #222;
+        border-top: 1px solid #222;
+        border-right: 2px solid #666;
+        border-bottom: 2px solid #666;
+    }
+
+    </style>
+    <!--<script src="http://192.168.1.100:8080/socket.io/socket.io.js"></script>-->
+    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+    <script>
+    var socket = io.connect();
+    socket.on('connected', function(data) {
+        console.log((JSON.stringify(data.status) + '\n'))
+    })
+    socket.on('b1', function(data) {
+        console.log(data + '\n')
+    })
+
+    function motorUp() {
+        var sel = document.getElementById("selMot")
+        var val = sel.options[sel.selectedIndex].value
+        var time = document.getElementById("time").value
+        socket.emit('mup', {
+            motor: val,
+            delay: time
+        })
+    }
+
+    function motorDown() {
+        var sel = document.getElementById("selMot")
+        var val = sel.options[sel.selectedIndex].value
+        var time = document.getElementById("time").value
+        socket.emit('mdown', {
+            motor: val,
+            delay: time
+        })
+    }
+
+    function writeToScreen(message){
+        document.getElementById("output").value += message+"\n"
+    }
+
+    </script>
+</head>
+
+<body>
+    <div>
+        <pre> 
+ _)  |         _|                             |     _)  |   
+  |  __|      |     __|  _ \   __ `__ \       __ \   |  __| 
+  |  |        __|  |    (   |  |   |   |      |   |  |  |   
+ _| \__|     _|   _|   \___/  _|  _|  _|     _.__/  _| \__| 
+                                                            
+                            
+    </pre>
+        <p>Instructions: select a motor, a time in seconds and press up or down!!</p>
+        <select id="selMot">
+            <option value="m1">Motor 1</option>
+            <option value="m2">Motor 2</option>
+            <option value="m3">Motor 3</option>
+            <option value="m4">Motor 4</option>
+            <option value="m5">Motor 5</option>
+        </select>
+        <input id="time" type="number" value="1">
+        <input id = "mup" type="button" name=motUp value="up" onmousedown="motorUp();">
+        <input id="mdown" type="button" name=motDown value="down" onmousedown="motorDown();">
+    </div>
+</body>
+<html>
