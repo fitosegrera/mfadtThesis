@@ -3,8 +3,8 @@ var io = require('socket.io').listen(app)
 var udoo = require('./udooGPIO.js')
 var fs = require('fs')
 
-var m1a = 18
-var m1b = 41
+var m1a = 16
+var m1b = 20
 
 function setup(){
  udoo.pinMode(m1a, "OUTPUT")

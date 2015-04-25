@@ -5,16 +5,16 @@ from simlib import emitter, bucket, udooGPIO
 hit = 0
 udoo = udooGPIO.UdooGPIO()
 
-m1a = 18
-m1b = 41
-m2a = 18
-m2b = 41
-m3a = 18
-m3b = 41
-m4a = 18
-m4b = 41
-m5a = 18
-m5b = 41
+m1a = 16
+m1b = 20
+m2a = 23
+m2b = 4
+m3a = 11
+m3b = 12
+m4a = 13
+m4b = 14
+m5a = 15
+m5b = 18
 
 def setup():
 	udoo.Serial(9600)
