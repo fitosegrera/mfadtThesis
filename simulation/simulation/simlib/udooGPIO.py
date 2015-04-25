@@ -45,7 +45,6 @@ class UdooGPIO:
 		
 	def SerialWrite(self, data):
 		self.s.write(data)
-		print data
 		
 	def delay(self, d):
 		time.sleep(d)

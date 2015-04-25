@@ -5,16 +5,17 @@ from simlib import emitter, bucket, udooGPIO
 hit = 0
 udoo = udooGPIO.UdooGPIO()
 
+#Declare GPIOs
 m1a = 16
 m1b = 20
-m2a = 23
-m2b = 4
-m3a = 11
-m3b = 12
-m4a = 13
-m4b = 14
-m5a = 15
-m5b = 18
+m2a = 17
+m2b = 18
+m3a = 41
+m3b = 42
+m4a = 21
+m4b = 19
+m5a = 1
+m5b = 9
 
 def setup():
 	udoo.Serial(9600)
@@ -38,7 +39,6 @@ def stopMotor(a, b):
 	udoo.digitalWrite(a, "LOW")
 	udoo.digitalWrite(b, "LOW")
 	
-
 # Simulation function
 def startSim():
 	global hit, s
